@@ -36,7 +36,14 @@ jar {
 }
 
 task stage() {
-    dependsOn clean, shadowJar
+    dependsOn clean, shadowJar, runApi
+}
+
+
+task runApi(){
+    classpath = files('build/libs/*.jar')
+    classpath += sourceSets.main.runtimeClasspath
+    main = 'com.biztriangle.Application'
 }
 
 dependencies {
